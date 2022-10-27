@@ -28,6 +28,7 @@ public class POOEj7 {
         double porcentidealpeso;
         double porcentbajopeso;
         boolean mayoredad;
+        Persona[] vectorPersona=new Persona[4];
         
         PersonaServicio person = new PersonaServicio();
         
@@ -36,93 +37,45 @@ public class POOEj7 {
         Persona p3 = person.crearPersona();
         Persona p4 = person.crearPersona();
         
-        MasaCorporal=person.clacularMC(p1.getPeso(),p1.getAltura());
-        switch (MasaCorporal) {
-            case 1:
-                System.out.println("p1 Tiene sobrepeso");
-                sobrepeso = sobrepeso +1;
-                break;
-            case 0:
-                System.out.println("p1 Peso ideal");
-                ideal = ideal +1;
-                break;
-            case -1:
-                System.out.println("p1 tiene peso bajo");
-                bajopeso = bajopeso +1;
-                break;
+        vectorPersona[0]=p1;
+        vectorPersona[1]=p2;
+        vectorPersona[2]=p3;
+        vectorPersona[3]=p4;
+        
+        for (int i = 0; i < 4; i++) {
+            MasaCorporal = person.clacularMC(vectorPersona[i].getPeso(), vectorPersona[i].getAltura());
+            switch (MasaCorporal) {
+                case 1:
+                    //"p"+i+1+
+                    System.out.println(vectorPersona[i].getNombre() + " tiene sobrepeso");
+                    sobrepeso = sobrepeso + 1;
+                    break;
+                case 0:
+                    System.out.println(vectorPersona[i].getNombre() + " tiene Peso ideal");
+                    ideal = ideal + 1;
+                    break;
+                case -1:
+                    System.out.println(vectorPersona[i].getNombre() + " tiene peso bajo");
+                    bajopeso = bajopeso + 1;
+                    break;
+            }
+            mayoredad = person.esMayorDeEdad(vectorPersona[i].getEdad());
+            if (mayoredad == true) {
+                mayor = mayor + 1;
+            }
         }
-        MasaCorporal=person.clacularMC(p2.getPeso(),p2.getAltura());
-        switch (MasaCorporal) {
-            case 1:
-                System.out.println("p2 Tiene sobrepeso");
-                sobrepeso = sobrepeso +1;
-                break;
-            case 0:
-                System.out.println("p2 Peso ideal");
-                ideal = ideal +1;
-                break;
-            case -1:
-                System.out.println("p2 tiene peso bajo");
-                bajopeso = bajopeso +1;
-                break;
-        }
-        MasaCorporal=person.clacularMC(p3.getPeso(),p3.getAltura());
-        switch (MasaCorporal) {
-            case 1:
-                System.out.println("p3 Tiene sobrepeso");
-                sobrepeso = sobrepeso +1;
-                break;
-            case 0:
-                System.out.println("p3 Peso ideal");
-                ideal = ideal +1;
-                break;
-            case -1:
-                System.out.println("p3 tiene peso bajo");
-                bajopeso = bajopeso +1;
-                break;
-        }
-        MasaCorporal=person.clacularMC(p4.getPeso(),p4.getAltura());
-        switch (MasaCorporal) {
-            case 1:
-                System.out.println("p4 Tiene sobrepeso");
-                sobrepeso = sobrepeso +1;
-                break;
-            case 0:
-                System.out.println("p4 Peso ideal");
-                ideal = ideal +1;
-                break;
-            case -1:
-                System.out.println("p4 tiene peso bajo");
-                bajopeso = bajopeso +1;
-                break;
-        }
-        mayoredad=person.esMayorDeEdad(p1.getEdad());
-        if (mayoredad==true){
-            mayor=mayor +1;
-        }
-        mayoredad=person.esMayorDeEdad(p2.getEdad());
-        if (mayoredad==true){
-            mayor=mayor +1;
-        }
-        mayoredad=person.esMayorDeEdad(p3.getEdad());
-        if (mayoredad==true){
-            mayor=mayor +1;
-        }
-        mayoredad=person.esMayorDeEdad(p4.getEdad());
-        if (mayoredad==true){
-            mayor=mayor +1;
-        }
-        porcentSobrepeso=(sobrepeso/4)*100;
-        System.out.println("El porcentaje de sobrepeso es : " + 
-               porcentSobrepeso + " % ");
-        porcentidealpeso=(ideal/4)*100;
-        System.out.println("El porcentaje de peso ideal es : " + 
-               porcentidealpeso + " % ");
-        porcentbajopeso=(bajopeso/4)*100;
-        System.out.println("El porcentaje de bajo peso es : " + 
-               porcentbajopeso + " % ");
-        porcentMayor =(mayor/4)*100;
-        System.out.println("El porcentaje mayor de edad es : " + 
-               porcentMayor + " % ");
+        
+        porcentSobrepeso = (sobrepeso / 4) * 100;
+        System.out.println("El porcentaje de sobrepeso es : "
+                + porcentSobrepeso + " % ");
+        porcentidealpeso = (ideal / 4) * 100;
+        System.out.println("El porcentaje de peso ideal es : "
+                + porcentidealpeso + " % ");
+        porcentbajopeso = (bajopeso / 4) * 100;
+        System.out.println("El porcentaje de bajo peso es : "
+                + porcentbajopeso + " % ");
+        porcentMayor = (mayor / 4) * 100;
+        System.out.println("El porcentaje mayor de edad es : "
+                + porcentMayor + " % ");
     }
 }
